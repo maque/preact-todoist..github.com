@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script type="module">
+        import { h, render } from 'https://unpkg.com/preact@latest?module';
+        import { useState } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module';
+        import htm from "https://unpkg.com/htm@latest/dist/htm.module.js?module";
+        // Initialize htm with Preact
+        const html = htm.bind(h);
+
+        function Task(props) {
+            return html`<div>
+                    <span>${props.text}</span>
+                    <div>${props.date} ${props.tags}</div>
+                    </div>`
+        }
+
+        function App(props) {
+            const [tasks, setTasks] = useState([
+                { text: "Watch film", date: "10-02", tags: ["film"] },
+                { text: "Watch film 2", date: "10-03", tags: ["film"] },
+
+            ]);
+
+            return html`<div>
+                ${tasks.map(t => html`<${Task} ...${t}/>`)}
+                <input type=text
+                </div>`;
+        }
+
+        render(html`<${App} name="World" />`, document.body);
+    </script>
+</head>
+
+</html>
